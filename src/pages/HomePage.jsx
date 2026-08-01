@@ -110,7 +110,7 @@ export default function HomePage() {
 
       <section className="relative z-10 mx-auto -mt-10 max-w-7xl px-4 sm:px-6 lg:px-8" data-reveal>
         <div className="grid grid-cols-2 overflow-hidden rounded-2xl border border-border/70 bg-background/95 shadow-2xl shadow-foreground/10 backdrop-blur-xl lg:grid-cols-4">
-          {stats.map(([value, label], index) => <div key={label} className={`relative px-4 py-7 text-center sm:py-8 ${index % 2 ? 'border-l border-border/70' : ''} ${index > 1 ? 'border-t border-border/70 lg:border-t-0' : ''} ${index === 2 ? 'lg:border-l' : ''}`}><p className="font-heading text-3xl font-black tracking-tight text-primary sm:text-4xl">{value}</p><p className="mt-1 text-[11px] font-bold uppercase tracking-[.12em] text-muted-foreground">{label}</p></div>)}
+          {stats.map(([value, label], index) => <div key={label} className={`relative px-4 py-7 text-center sm:py-8 ${index % 2 ? 'border-l border-border/70' : ''} ${index > 1 ? 'border-t border-border/70 lg:border-t-0' : ''} ${index === 2 ? 'lg:border-l' : ''}`}><p className="font-heading text-3xl font-black tracking-tight text-primary sm:text-4xl">{value}</p><p className="mt-1 text-[11px] font-bold uppercase tracking-[.12em] text-foreground/80">{label}</p></div>)}
         </div>
       </section>
 
