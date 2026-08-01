@@ -44,7 +44,7 @@ export default function HomePage() {
       <section className="relative isolate min-h-[calc(100vh-4rem)] overflow-hidden border-b border-white/10 bg-foreground text-white">
         <div className="absolute inset-0 -z-20 bg-foreground">
           {reduceMotion ? (
-            <img src="/home-images/tree-service-hero-v2.webp" alt="Professional arborist crew caring for a mature tree with a bucket truck" width="640" height="1348" className="h-full w-full object-cover" />
+            <img src="/home-images/tree-service-hero-v3-480.webp" srcSet="/home-images/tree-service-hero-v3-480.webp 480w, /home-images/tree-service-hero-v3-640.webp 640w" sizes="100vw" alt="Professional arborist crew caring for a mature tree with a bucket truck" width="480" height="1012" fetchPriority="high" className="h-full w-full object-cover" />
           ) : (
             heroVideos.map((video, index) => (
               <video
@@ -54,7 +54,7 @@ export default function HomePage() {
                 muted
                 playsInline
                 preload={index === 0 ? 'auto' : 'metadata'}
-                poster="/home-images/tree-service-hero-v2.webp"
+                poster="/home-images/tree-service-hero-v3-480.webp"
                 aria-hidden={index !== activeVideo}
                 onEnded={() => setActiveVideo((index + 1) % heroVideos.length)}
                 className={`absolute inset-0 h-full w-full scale-[1.03] object-cover transition-all duration-1000 ease-out ${index === activeVideo ? 'opacity-100 scale-100' : 'opacity-0 scale-[1.06]'}`}
@@ -125,7 +125,7 @@ export default function HomePage() {
             {homeServices.map((service, index) => {
               const ServiceIcon = service.icon;
               return <Link key={service.slug} to={`/services/${service.slug}`} data-reveal data-delay={`${(index % 3) * 80}`} className={`group relative isolate overflow-hidden rounded-[1.75rem] border border-white/10 bg-foreground shadow-xl ${index === 0 || index === 5 ? 'lg:col-span-2' : ''}`}>
-                <img src={service.image} alt={service.imageAlt} width="960" height="640" loading="lazy" decoding="async" className="absolute inset-0 -z-20 h-full w-full object-cover transition duration-700 group-hover:scale-105" />
+                <img src={service.image} srcSet={`${service.image.replace('-800.webp', '-480.webp')} 480w, ${service.image} 800w, ${service.image.replace('-800.webp', '-1280.webp')} 1280w`} sizes={index === 0 || index === 5 ? '(min-width: 1024px) 62vw, (min-width: 768px) 46vw, 94vw' : '(min-width: 1024px) 30vw, (min-width: 768px) 46vw, 94vw'} alt={service.imageAlt} width="800" height="534" loading="lazy" decoding="async" className="absolute inset-0 -z-20 h-full w-full object-cover transition duration-700 group-hover:scale-105" />
                 <div className="absolute inset-0 -z-10 bg-gradient-to-t from-black/90 via-black/30 to-black/5 transition group-hover:from-black/95" />
                 <div className="flex h-full flex-col justify-between p-6 sm:p-7">
                   <div className="flex items-start justify-between"><span className="flex h-11 w-11 items-center justify-center rounded-xl border border-white/20 bg-black/25 text-accent backdrop-blur"><ServiceIcon className="h-5 w-5" /></span><span className="rounded-full border border-white/20 bg-black/20 px-3 py-1.5 text-[10px] font-bold uppercase tracking-[.14em] text-white/75 backdrop-blur">{service.tag}</span></div>
@@ -153,7 +153,7 @@ export default function HomePage() {
 
       <section className="mx-auto max-w-7xl px-4 py-24 sm:px-6 lg:px-8" data-reveal>
         <div className="relative isolate overflow-hidden rounded-[2rem] px-6 py-20 text-center text-white shadow-2xl sm:px-12">
-          <img src="/service-images/emergency-tree-removal-v2.webp" alt="Professional emergency tree service crew at work" width="960" height="640" loading="lazy" decoding="async" className="absolute inset-0 -z-20 h-full w-full object-cover" />
+          <img src="/service-images/emergency-tree-removal-v3-800.webp" srcSet="/service-images/emergency-tree-removal-v3-480.webp 480w, /service-images/emergency-tree-removal-v3-800.webp 800w, /service-images/emergency-tree-removal-v3-1280.webp 1280w" sizes="(min-width: 1280px) 1280px, 94vw" alt="Professional emergency tree service crew at work" width="1280" height="854" loading="lazy" decoding="async" className="absolute inset-0 -z-20 h-full w-full object-cover" />
           <div className="absolute inset-0 -z-10 bg-foreground/85" />
           <Sparkles className="mx-auto h-8 w-8 text-accent" /><h2 className="mx-auto mt-5 max-w-3xl font-heading text-4xl font-black leading-tight sm:text-5xl">A small concern should not become an expensive emergency.</h2><p className="mx-auto mt-5 max-w-xl text-sm leading-7 text-white/65">Get a professional assessment and a clear written plan for your property.</p><div className="mt-9 flex flex-col items-center justify-center gap-3 sm:flex-row"><Link to="/contact" className="inline-flex items-center gap-2 rounded-xl bg-accent px-7 py-3.5 text-sm font-black text-foreground shadow-lg">Schedule free inspection <ArrowRight className="h-4 w-4" /></Link><a href="tel:+17165892600" className="inline-flex items-center gap-2 rounded-xl border border-white/25 bg-white/5 px-7 py-3.5 text-sm font-bold text-white backdrop-blur"><PhoneCall className="h-4 w-4 text-accent" /> +1 716-589-2600</a></div>
         </div>

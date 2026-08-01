@@ -9,7 +9,7 @@ const services = [
     lead: 'Fast-response hazardous tree removal and post-storm damage remediation.',
     description: 'Safe extraction of fallen, dead, or structurally compromised trees threatening homes, utility lines, or driveways with advanced crane and rigging equipment.',
     features: ['24/7 Rapid Emergency Response Unit', 'Crane & High-Rigging Safe Removal', 'Full Debris & Timber Yard Cleanup', 'Direct Insurance Claim Support'],
-    image: '/service-images/emergency-tree-removal-v2.webp',
+    image: '/service-images/emergency-tree-removal-v3-800.webp',
     imageAlt: 'Emergency arborist crew removing a storm-damaged tree beside a home',
     why: 'Storm-damaged or dead trees can fall without warning, putting your home, vehicle, and family at serious risk. Fast professional response prevents minor damage from becoming a disaster.',
     process: [
@@ -27,7 +27,7 @@ const services = [
     lead: 'Enhance structural stability, aesthetic beauty, and healthy growth.',
     description: 'Professional crown thinning, deadwood extraction, and selective canopy pruning performed by certified climbers and bucket truck operators.',
     features: ['Crown Thinning & Canopy Elevation', 'Deadwood & Hazard Branch Pruning', 'Aesthetic Tree Shaping & Balance', 'Seasonal Growth Management'],
-    image: '/service-images/tree-pruning-v2.webp',
+    image: '/service-images/tree-pruning-v3-800.webp',
     imageAlt: 'Certified arborist pruning a mature tree while secured with climbing ropes',
     why: 'Untrimmed trees develop weak branch structure, harbour disease, and can drop limbs on your home. Regular pruning keeps trees healthy, safe, and looking their best year-round.',
     process: [
@@ -45,7 +45,7 @@ const services = [
     lead: 'Expert disease diagnosis, soil fertilization, and structural risk evaluations.',
     description: 'ISA-certified arborists evaluate root systems, fungal infections, pest infestations, and structural integrity to safeguard your valuable trees.',
     features: ['ISA Certified Risk & Health Reports', 'Deep-Root Soil Injection Feed', 'Pest & Disease Treatment Plans', 'Tree Preservation Consulting'],
-    image: '/service-images/tree-removal-v2.webp',
+    image: '/service-images/tree-removal-v3-800.webp',
     imageAlt: 'Tree removal crew lowering a large trunk section with rigging ropes',
     why: 'Diseased, dying, or structurally compromised trees put your property and people at risk. Professional removal ensures the job is done safely, cleanly, and without damage to surrounding trees or structures.',
     process: [
@@ -63,7 +63,7 @@ const services = [
     lead: 'Remove hazardous stumps and reclaim every inch of your landscape.',
     description: 'High-powered grinding eliminates stumps and surface roots below grade, leaving the area clean, level, and ready for replanting.',
     features: ['12-Inch Below-Grade Grinding', 'Root Flare & Surface Root Removal', 'Wood Chip Haul-Away Available', 'Backfill & Site Leveling'],
-    image: '/service-images/stump-grinding-v2.webp',
+    image: '/service-images/stump-grinding-v3-800.webp',
     imageAlt: 'Tracked stump grinder removing a large stump in a residential yard',
     why: 'Old stumps attract termites, rot fungi, and pests, and they make mowing and landscaping a nightmare. Grinding removes the stump and surface roots so you can reclaim that space completely.',
     process: [
@@ -81,7 +81,7 @@ const services = [
     lead: 'Efficient acreage clearing and site preparation for projects of any scale.',
     description: 'Heavy forestry equipment clears trees, brush, and debris for construction sites, rights-of-way, and property development.',
     features: ['Forestry Mulching & Brush Clearing', 'Large-Acreage Site Preparation', 'On-Site Wood Chipping', 'Debris Loading & Haul-Off'],
-    image: '/service-images/land-clearing-v2.webp',
+    image: '/service-images/land-clearing-v3-800.webp',
     imageAlt: 'Forestry mulcher clearing brush and small trees from an overgrown property',
     why: 'Whether you are preparing for construction, improving drainage, or reclaiming overgrown land, professional clearing gets the job done faster, safer, and with less environmental impact than DIY approaches.',
     process: [
@@ -99,7 +99,7 @@ const services = [
     lead: 'Safe vegetation management around energized utility infrastructure.',
     description: 'Qualified aerial crews maintain safe clearances around power lines, communication corridors, roads, and high-access structures.',
     features: ['EHAP-Qualified Aerial Crews', 'Bucket Truck & Climbing Access', 'Utility Right-of-Way Clearance', 'Preventive Cycle Maintenance'],
-    image: '/service-images/utility-clearance-v2.webp',
+    image: '/service-images/utility-clearance-v3-800.webp',
     imageAlt: 'Utility arborist trimming branches near power lines from an insulated bucket truck',
     why: 'Vegetation growing into utility lines causes outages, fires, and serious safety hazards. Regular professional clearance keeps corridors compliant and your neighbourhood safe.',
     process: [

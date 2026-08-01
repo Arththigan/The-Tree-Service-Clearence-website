@@ -7,7 +7,7 @@ export default function ServiceCard({ service }) {
   return (
     <article className="group flex flex-col overflow-hidden rounded-xl border border-border bg-card/60 shadow-sm transition-all hover:-translate-y-1 hover:shadow-xl">
       <div className="relative h-48 overflow-hidden bg-muted">
-        <img src={service.image} alt={service.imageAlt} width="960" height="640" loading="lazy" decoding="async" className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105" />
+        <img src={service.image} srcSet={`${service.image.replace('-800.webp', '-480.webp')} 480w, ${service.image} 800w, ${service.image.replace('-800.webp', '-1280.webp')} 1280w`} sizes="(min-width: 1024px) 30vw, (min-width: 768px) 46vw, 94vw" alt={service.imageAlt} width="800" height="534" loading="lazy" decoding="async" className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105" />
         <span className="absolute right-3 top-3 rounded-full border border-border bg-background/90 px-3 py-1 text-[11px] font-semibold backdrop-blur">{service.tag}</span>
       </div>
       <div className="flex flex-1 flex-col p-6">
