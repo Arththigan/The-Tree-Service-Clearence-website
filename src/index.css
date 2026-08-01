@@ -1,0 +1,50 @@
+@import url('https://fonts.googleapis.com/css2?family=Figtree:wght@400;500;600;700;800;900&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 80 20% 98%;
+    --foreground: 75 25% 18%;
+    --card: 80 15% 96%;
+    --card-foreground: 75 25% 18%;
+    --primary: 70 39% 30%;
+    --primary-foreground: 80 20% 98%;
+    --secondary: 70 24% 88%;
+    --secondary-foreground: 75 25% 18%;
+    --muted: 70 15% 92%;
+    --muted-foreground: 75 15% 42%;
+    --accent: 70 52% 73%;
+    --accent-foreground: 75 25% 18%;
+    --border: 70 18% 86%;
+    --ring: 70 39% 30%;
+    --radius: .75rem;
+  }
+
+  html { scroll-behavior: smooth; }
+  body { margin: 0; min-width: 320px; background: hsl(var(--background)); color: hsl(var(--foreground)); font-family: 'Figtree', 'Inter', system-ui, sans-serif; -webkit-font-smoothing: antialiased; }
+  button, input, select, textarea { font: inherit; }
+}
+
+.scroll-reveal {
+  opacity: 0;
+  transform: translateY(26px);
+  transition: opacity .7s cubic-bezier(.2,.65,.3,1), transform .7s cubic-bezier(.2,.65,.3,1);
+  transition-delay: var(--reveal-delay, 0ms);
+}
+
+/* When leaving viewport, reset instantly with no delay */
+.scroll-reveal:not(.is-visible) {
+  transition-delay: 0ms;
+}
+
+.scroll-reveal[data-delay="140"] { --reveal-delay: 140ms; }
+.scroll-reveal.is-visible { opacity: 1; transform: translateY(0); }
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  .scroll-reveal { opacity: 1; transform: none; transition: none; }
+  *, *::before, *::after { animation-duration: .01ms !important; animation-iteration-count: 1 !important; }
+}
