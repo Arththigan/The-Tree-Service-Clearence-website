@@ -147,8 +147,8 @@ export default function AboutPage() {
             <Link to="/contact" className="inline-flex items-center gap-2 rounded-xl bg-background px-7 py-3.5 text-sm font-bold text-foreground shadow-lg">
               Book Free Inspection
             </Link>
-            <a href="tel:8005558733" className="inline-flex items-center gap-2 rounded-xl border border-white/30 px-7 py-3.5 text-sm font-bold text-white">
-              <PhoneCall className="h-4 w-4" /> (800) 555-TREE
+            <a href="tel:+17165892600" className="inline-flex items-center gap-2 rounded-xl border border-white/30 px-7 py-3.5 text-sm font-bold text-white">
+              <PhoneCall className="h-4 w-4" /> +1 716-589-2600
             </a>
           </div>
         </div>

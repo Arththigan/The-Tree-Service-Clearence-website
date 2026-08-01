@@ -8,7 +8,7 @@ const sections = [
   { heading: 'Information Sharing', paragraphs: ['We do not sell your personal information. We may share information with service providers that support scheduling, communications, hosting, analytics, insurance coordination, or legal compliance when reasonably necessary.'] },
   { heading: 'Data Security and Retention', paragraphs: ['We use reasonable administrative and technical safeguards. Information is retained only as long as needed for service delivery, recordkeeping, dispute resolution, and legal obligations. No internet transmission or storage system can be guaranteed completely secure.'] },
   { heading: 'Your Choices', paragraphs: ['You may request access, correction, or deletion of personal information, or ask us to stop non-essential communications, subject to applicable legal and operational requirements.'] },
-  { heading: 'Contact Us', paragraphs: ['For privacy questions or requests, contact service@pulsecx.com or call (800) 555-TREE.'] },
+  { heading: 'Contact Us', paragraphs: ['For privacy questions or requests, contact service@pulsecx.com or call +1 716-589-2600.'] },
 ];
 
 export default function PrivacyPolicyPage() {

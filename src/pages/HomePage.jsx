@@ -1,64 +1,162 @@
-import React from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { ArrowRight, BadgeCheck, CircleCheck, Clock, PhoneCall, ShieldCheck, Sparkles, Star, Trees } from 'lucide-react';
 import Link from '../components/Link';
-import ServiceCard from '../components/ServiceCard';
 import services from '../data/services';
 
 const trustPoints = ['ISA-certified arborist crews', '$2M fully insured operations', 'Residential & commercial care'];
 const stats = [['5,000+', 'Trees serviced'], ['15+', 'Years experience'], ['4.9/5', 'Customer rating'], ['24/7', 'Emergency response']];
-const homeServices = services.slice(0, 3);
+const homeServices = services.slice(0, 6);
+const heroVideos = [
+  { src: '/videos/crew-preparation.mp4', label: 'Professional crew preparation', detail: 'Every safe project starts with a clear plan.' },
+  { src: '/videos/tree-trimming.mp4', label: 'Precision tree trimming', detail: 'Controlled cuts protect your trees and property.' },
+  { src: '/videos/stump-grinding.mp4', label: 'Complete stump grinding', detail: 'Reclaim your landscape down to a clean finish.' },
+  { src: '/videos/land-clearing.mp4', label: 'Commercial land clearing', detail: 'Heavy equipment for efficient site preparation.' },
+];
 
 export default function HomePage() {
+  const [activeVideo, setActiveVideo] = useState(0);
+  const [reduceMotion, setReduceMotion] = useState(false);
+  const videoRefs = useRef([]);
+
+  useEffect(() => {
+    const mediaQuery = window.matchMedia('(prefers-reduced-motion: reduce)');
+    const updatePreference = () => setReduceMotion(mediaQuery.matches);
+    updatePreference();
+    mediaQuery.addEventListener('change', updatePreference);
+    return () => mediaQuery.removeEventListener('change', updatePreference);
+  }, []);
+
+  useEffect(() => {
+    if (reduceMotion) return;
+    videoRefs.current.forEach((video, index) => {
+      if (!video) return;
+      if (index === activeVideo) {
+        video.currentTime = 0;
+        video.play().catch(() => {});
+      } else {
+        video.pause();
+      }
+    });
+  }, [activeVideo, reduceMotion]);
+
   return (
     <main className="overflow-hidden">
-      <section className="relative isolate border-b border-border/60">
-        <div className="absolute inset-0 -z-20 bg-[radial-gradient(circle_at_15%_20%,hsl(var(--accent)/.35),transparent_30%),radial-gradient(circle_at_90%_80%,hsl(var(--secondary)/.75),transparent_35%)]" />
+      <section className="relative isolate min-h-[calc(100vh-4rem)] overflow-hidden border-b border-white/10 bg-foreground text-white">
+        <div className="absolute inset-0 -z-20 bg-foreground">
+          {reduceMotion ? (
+            <img src="/home-images/tree-service-hero-v2.png" alt="Professional arborist crew caring for a mature tree with a bucket truck" className="h-full w-full object-cover" />
+          ) : (
+            heroVideos.map((video, index) => (
+              <video
+                key={video.src}
+                ref={(node) => { videoRefs.current[index] = node; }}
+                src={video.src}
+                muted
+                playsInline
+                preload={index === 0 ? 'auto' : 'metadata'}
+                poster="/home-images/tree-service-hero-v2.png"
+                aria-hidden={index !== activeVideo}
+                onEnded={() => setActiveVideo((index + 1) % heroVideos.length)}
+                className={`absolute inset-0 h-full w-full scale-[1.03] object-cover transition-all duration-1000 ease-out ${index === activeVideo ? 'opacity-100 scale-100' : 'opacity-0 scale-[1.06]'}`}
+              />
+            ))
+          )}
+        </div>
+        <div className="absolute inset-0 -z-10 bg-[linear-gradient(90deg,rgba(7,18,12,.94)_0%,rgba(7,18,12,.78)_43%,rgba(7,18,12,.30)_72%,rgba(7,18,12,.48)_100%)]" />
+        <div className="absolute inset-x-0 bottom-0 -z-10 h-56 bg-gradient-to-t from-foreground/85 to-transparent" />
         <div className="mx-auto grid min-h-[calc(100vh-4rem)] max-w-7xl items-center gap-14 px-4 py-16 sm:px-6 lg:grid-cols-12 lg:px-8 lg:py-20">
           <div className="lg:col-span-7" data-reveal>
-            <div className="inline-flex items-center gap-2 rounded-full border border-primary/15 bg-background/80 px-3.5 py-1.5 text-xs font-bold uppercase tracking-[.16em] text-primary shadow-sm backdrop-blur">
-              <span className="relative flex h-2 w-2"><span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-primary opacity-40" /><span className="relative h-2 w-2 rounded-full bg-primary" /></span>
+            <div className="inline-flex items-center gap-2 rounded-full border border-white/20 bg-black/20 px-3.5 py-1.5 text-xs font-bold uppercase tracking-[.16em] text-accent shadow-sm backdrop-blur-md">
+              <span className="relative flex h-2 w-2"><span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-accent opacity-40" /><span className="relative h-2 w-2 rounded-full bg-accent" /></span>
               Local crews available today
             </div>
-            <h1 className="mt-7 max-w-4xl font-heading text-5xl font-black leading-[1.02] tracking-[-.045em] text-foreground sm:text-6xl lg:text-7xl">
-              Expert tree care for a <span className="relative whitespace-nowrap text-primary">safer property<span className="absolute -bottom-1 left-0 h-2 w-full rounded-full bg-accent/60 -z-10" /></span>.
+            <h1 className="mt-7 max-w-4xl font-heading text-5xl font-black leading-[1.02] tracking-[-.045em] text-white sm:text-6xl lg:text-7xl">
+              Expert tree care for a <span className="relative whitespace-nowrap text-accent">safer property<span className="absolute -bottom-1 left-0 -z-10 h-2 w-full rounded-full bg-primary/70" /></span>.
             </h1>
-            <p className="mt-7 max-w-2xl text-lg leading-8 text-muted-foreground sm:text-xl">From emergency removals to precision pruning, certified arborists protect your home, landscape, and peace of mind with dependable field expertise.</p>
+            <p className="mt-7 max-w-2xl text-lg leading-8 text-white/70 sm:text-xl">From emergency removals to precision pruning, certified arborists protect your home, landscape, and peace of mind with dependable field expertise.</p>
             <div className="mt-8 flex flex-col gap-3 sm:flex-row">
               <Link to="/contact" className="group inline-flex h-13 items-center justify-center gap-2 rounded-xl bg-primary px-7 py-3.5 text-sm font-bold text-primary-foreground shadow-xl shadow-primary/20 transition hover:-translate-y-0.5 hover:shadow-2xl">Book a Free Inspection <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" /></Link>
-              <a href="tel:8005558733" className="inline-flex items-center justify-center gap-2 rounded-xl border border-border bg-background/80 px-7 py-3.5 text-sm font-bold shadow-sm backdrop-blur transition hover:border-primary/30 hover:bg-secondary"><PhoneCall className="h-4 w-4 text-primary" /> (800) 555-TREE</a>
+              <a href="tel:+17165892600" className="inline-flex items-center justify-center gap-2 rounded-xl border border-white/25 bg-black/20 px-7 py-3.5 text-sm font-bold text-white shadow-sm backdrop-blur-md transition hover:bg-white/10"><PhoneCall className="h-4 w-4 text-accent" /> +1 716-589-2600</a>
             </div>
-            <ul className="mt-8 flex flex-wrap gap-x-6 gap-y-3">{trustPoints.map((point) => <li key={point} className="flex items-center gap-2 text-xs font-semibold text-muted-foreground"><CircleCheck className="h-4 w-4 text-primary" />{point}</li>)}</ul>
+            <ul className="mt-8 flex flex-wrap gap-x-6 gap-y-3">{trustPoints.map((point) => <li key={point} className="flex items-center gap-2 text-xs font-semibold text-white/65"><CircleCheck className="h-4 w-4 text-accent" />{point}</li>)}</ul>
           </div>
 
           <div className="relative lg:col-span-5" data-reveal data-delay="140">
-            <div className="absolute -inset-6 -z-10 rounded-[2.5rem] bg-primary/10 blur-3xl" />
-            <div className="overflow-hidden rounded-[2rem] border border-white/70 bg-card shadow-2xl shadow-primary/15">
-              <div className="relative h-[29rem]">
-                <img src="/home-images/tree-service-hero-v2.png" alt="Professional arborist crew caring for a mature tree with a bucket truck" className="h-full w-full object-cover object-center" />
-                <div className="absolute inset-0 bg-gradient-to-t from-foreground/85 via-foreground/5 to-transparent" />
-                <div className="absolute left-5 right-5 top-5 flex items-center justify-between">
-                  <span className="inline-flex items-center gap-2 rounded-full bg-background/90 px-3 py-2 text-xs font-bold text-foreground shadow-lg backdrop-blur"><BadgeCheck className="h-4 w-4 text-primary" /> ISA Certified</span>
-                  <span className="inline-flex items-center gap-2 rounded-full bg-foreground/80 px-3 py-2 text-xs font-bold text-white backdrop-blur"><Clock className="h-4 w-4 text-accent" /> 24/7 Response</span>
-                </div>
-                <div className="absolute bottom-0 left-0 right-0 p-6 text-white"><div className="mb-3 flex text-accent">{Array.from({ length: 5 }, (_, index) => <Star key={index} className="h-4 w-4 fill-current" />)}</div><p className="font-heading text-2xl font-bold">Professional care. Clean finish.</p><p className="mt-1 text-sm text-white/75">Fully equipped crews for complex tree work.</p></div>
+            <div className="absolute -inset-6 -z-10 rounded-[2.5rem] bg-accent/10 blur-3xl" />
+            <div className="rounded-[2rem] border border-white/20 bg-black/25 p-5 shadow-2xl backdrop-blur-xl sm:p-7">
+              <div className="flex items-center justify-between border-b border-white/15 pb-5">
+                <span className="inline-flex items-center gap-2 text-xs font-bold uppercase tracking-[.15em] text-accent"><BadgeCheck className="h-4 w-4" /> Live field operations</span>
+                <span className="inline-flex items-center gap-2 text-xs font-bold text-white/70"><Clock className="h-4 w-4 text-accent" /> 24/7</span>
+              </div>
+              <div key={activeVideo} className="py-8 motion-safe:animate-[fadeIn_.6s_ease-out]">
+                <p className="text-xs font-bold uppercase tracking-[.18em] text-white/50">Now showing · 0{activeVideo + 1}</p>
+                <p className="mt-3 font-heading text-3xl font-black leading-tight text-white">{reduceMotion ? 'Professional tree care' : heroVideos[activeVideo].label}</p>
+                <p className="mt-3 text-sm leading-6 text-white/65">{reduceMotion ? 'Fully equipped crews for complex tree work.' : heroVideos[activeVideo].detail}</p>
+              </div>
+              <div className="space-y-3">
+                {heroVideos.map((video, index) => (
+                  <button key={video.src} type="button" disabled={reduceMotion} onClick={() => setActiveVideo(index)} className="group flex w-full items-center gap-3 text-left" aria-label={`Show ${video.label}`} aria-current={index === activeVideo ? 'true' : undefined}>
+                    <span className={`text-[10px] font-bold ${index === activeVideo ? 'text-accent' : 'text-white/35'}`}>0{index + 1}</span>
+                    <span className="h-px flex-1 overflow-hidden bg-white/20"><span className={`block h-full bg-accent transition-all duration-700 ${index === activeVideo ? 'w-full' : 'w-0'}`} /></span>
+                    <span className={`w-28 truncate text-xs font-semibold transition-colors ${index === activeVideo ? 'text-white' : 'text-white/45 group-hover:text-white/75'}`}>{video.label}</span>
+                  </button>
+                ))}
               </div>
             </div>
-            <div className="absolute -bottom-6 -left-6 hidden rounded-2xl border border-border bg-background p-4 shadow-xl sm:block"><div className="flex items-center gap-3"><span className="flex h-11 w-11 items-center justify-center rounded-xl bg-primary/10"><ShieldCheck className="h-6 w-6 text-primary" /></span><div><p className="text-lg font-black">100%</p><p className="text-xs text-muted-foreground">Safety focused</p></div></div></div>
+            <div className="absolute -bottom-6 -left-6 hidden rounded-2xl border border-white/20 bg-black/40 p-4 shadow-xl backdrop-blur-xl sm:block"><div className="flex items-center gap-3"><span className="flex h-11 w-11 items-center justify-center rounded-xl bg-accent/15"><ShieldCheck className="h-6 w-6 text-accent" /></span><div><p className="text-lg font-black text-white">100%</p><p className="text-xs text-white/55">Safety focused</p></div></div></div>
           </div>
         </div>
       </section>
 
-      <section className="border-b border-border/70 bg-foreground py-7 text-background" data-reveal>
-        <div className="mx-auto grid max-w-7xl grid-cols-2 gap-6 px-4 sm:px-6 lg:grid-cols-4 lg:px-8">{stats.map(([value, label]) => <div key={label} className="text-center"><p className="font-heading text-2xl font-black text-accent sm:text-3xl">{value}</p><p className="mt-1 text-xs font-medium text-background/60">{label}</p></div>)}</div>
+      <section className="relative z-10 mx-auto -mt-10 max-w-7xl px-4 sm:px-6 lg:px-8" data-reveal>
+        <div className="grid grid-cols-2 overflow-hidden rounded-2xl border border-border/70 bg-background/95 shadow-2xl shadow-foreground/10 backdrop-blur-xl lg:grid-cols-4">
+          {stats.map(([value, label], index) => <div key={label} className={`relative px-4 py-7 text-center sm:py-8 ${index % 2 ? 'border-l border-border/70' : ''} ${index > 1 ? 'border-t border-border/70 lg:border-t-0' : ''} ${index === 2 ? 'lg:border-l' : ''}`}><p className="font-heading text-3xl font-black tracking-tight text-primary sm:text-4xl">{value}</p><p className="mt-1 text-[11px] font-bold uppercase tracking-[.12em] text-muted-foreground">{label}</p></div>)}
+        </div>
       </section>
 
-      <section className="mx-auto max-w-7xl px-4 py-24 sm:px-6 lg:px-8">
-        <div className="flex flex-col justify-between gap-5 md:flex-row md:items-end" data-reveal><div><span className="text-xs font-bold uppercase tracking-[.18em] text-primary">Built for every challenge</span><h2 className="mt-3 max-w-2xl font-heading text-3xl font-black tracking-tight sm:text-4xl">Tree services delivered with precision and care.</h2><p className="mt-4 max-w-2xl text-sm leading-6 text-muted-foreground">Specialized crews, modern equipment, and clear recommendations for every stage of your property.</p></div><Link to="/services" className="group inline-flex shrink-0 items-center gap-2 text-sm font-bold text-primary">View all services <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" /></Link></div>
-        <div className="mt-12 grid gap-7 md:grid-cols-2 lg:grid-cols-3">{homeServices.map((service) => <ServiceCard key={service.title} service={service} />)}</div>
+      <section className="relative overflow-hidden px-4 py-28 sm:px-6 lg:px-8">
+        <div className="absolute left-[-10rem] top-32 -z-10 h-96 w-96 rounded-full bg-accent/20 blur-3xl" />
+        <div className="mx-auto max-w-7xl">
+          <div className="flex flex-col justify-between gap-6 md:flex-row md:items-end" data-reveal>
+            <div><span className="text-xs font-bold uppercase tracking-[.2em] text-primary">Built for every challenge</span><h2 className="mt-4 max-w-3xl font-heading text-4xl font-black leading-tight tracking-tight sm:text-5xl">One crew. Every stage of your property.</h2><p className="mt-5 max-w-2xl text-sm leading-7 text-muted-foreground sm:text-base">Specialized crews, modern equipment, and a clear plan—from the first inspection to the final clean-up.</p></div>
+            <Link to="/services" className="group inline-flex shrink-0 items-center gap-2 rounded-full border border-border bg-background px-5 py-3 text-sm font-bold text-primary shadow-sm transition hover:-translate-y-0.5 hover:shadow-lg">Explore all services <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" /></Link>
+          </div>
+          <div className="mt-14 grid auto-rows-[19rem] gap-5 md:grid-cols-2 lg:grid-cols-3">
+            {homeServices.map((service, index) => {
+              const ServiceIcon = service.icon;
+              return <Link key={service.slug} to={`/services/${service.slug}`} data-reveal data-delay={`${(index % 3) * 80}`} className={`group relative isolate overflow-hidden rounded-[1.75rem] border border-white/10 bg-foreground shadow-xl ${index === 0 || index === 5 ? 'lg:col-span-2' : ''}`}>
+                <img src={service.image} alt={service.imageAlt} loading="lazy" className="absolute inset-0 -z-20 h-full w-full object-cover transition duration-700 group-hover:scale-105" />
+                <div className="absolute inset-0 -z-10 bg-gradient-to-t from-black/90 via-black/30 to-black/5 transition group-hover:from-black/95" />
+                <div className="flex h-full flex-col justify-between p-6 sm:p-7">
+                  <div className="flex items-start justify-between"><span className="flex h-11 w-11 items-center justify-center rounded-xl border border-white/20 bg-black/25 text-accent backdrop-blur"><ServiceIcon className="h-5 w-5" /></span><span className="rounded-full border border-white/20 bg-black/20 px-3 py-1.5 text-[10px] font-bold uppercase tracking-[.14em] text-white/75 backdrop-blur">{service.tag}</span></div>
+                  <div><h3 className="max-w-lg font-heading text-2xl font-black leading-tight text-white sm:text-3xl">{service.title}</h3><p className="mt-2 max-w-xl text-sm leading-6 text-white/65">{service.lead}</p><span className="mt-4 inline-flex items-center gap-2 text-xs font-bold text-accent">View service <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" /></span></div>
+                </div>
+              </Link>;
+            })}
+          </div>
+        </div>
       </section>
 
-      <section className="mx-auto max-w-7xl px-4 pb-24 sm:px-6 lg:px-8" data-reveal>
-        <div className="relative overflow-hidden rounded-[2rem] bg-primary px-6 py-14 text-center text-primary-foreground shadow-2xl shadow-primary/20 sm:px-12"><div className="absolute -right-24 -top-24 h-72 w-72 rounded-full border-[45px] border-white/5" /><Sparkles className="mx-auto h-8 w-8 text-accent" /><h2 className="mx-auto mt-5 max-w-2xl font-heading text-3xl font-black sm:text-4xl">Concerned about a tree on your property?</h2><p className="mx-auto mt-4 max-w-xl text-sm leading-6 text-primary-foreground/75">Get a professional assessment and a clear plan before a small concern becomes an expensive emergency.</p><Link to="/contact" className="mt-8 inline-flex items-center gap-2 rounded-xl bg-background px-7 py-3.5 text-sm font-bold text-foreground shadow-lg">Schedule Free Inspection <ArrowRight className="h-4 w-4" /></Link></div>
+      <section className="relative overflow-hidden bg-foreground py-28 text-white">
+        <div className="absolute inset-0 opacity-20 [background-image:radial-gradient(circle_at_center,hsl(var(--primary))_1px,transparent_1px)] [background-size:28px_28px]" />
+        <div className="relative mx-auto grid max-w-7xl gap-14 px-4 sm:px-6 lg:grid-cols-12 lg:px-8">
+          <div className="lg:col-span-5" data-reveal><span className="text-xs font-bold uppercase tracking-[.2em] text-accent">Simple from start to finish</span><h2 className="mt-4 font-heading text-4xl font-black leading-tight sm:text-5xl">A safer property in three clear steps.</h2><p className="mt-5 max-w-lg text-sm leading-7 text-white/60">No guesswork or vague estimates. You get a professional assessment, a written plan, and a clean result.</p><Link to="/contact" className="mt-8 inline-flex items-center gap-2 rounded-xl bg-accent px-6 py-3.5 text-sm font-black text-foreground shadow-xl shadow-accent/10">Start with a free inspection <ArrowRight className="h-4 w-4" /></Link></div>
+          <div className="space-y-4 lg:col-span-7">
+            {[
+              ['01', 'Inspect & recommend', 'We assess tree health, access, structures, and risk before recommending the right approach.'],
+              ['02', 'Plan & protect', 'Your crew establishes safe work zones, protects the property, and coordinates equipment and timing.'],
+              ['03', 'Complete & clean', 'Work is completed precisely, debris is removed, and your site is left ready to use.'],
+            ].map(([number, title, detail], index) => <div key={number} data-reveal data-delay={`${index * 100}`} className="group grid gap-4 rounded-2xl border border-white/10 bg-white/[.045] p-6 backdrop-blur transition hover:border-accent/35 hover:bg-white/[.075] sm:grid-cols-[5rem_1fr] sm:items-center"><span className="font-heading text-3xl font-black text-accent/70">{number}</span><div><h3 className="font-heading text-xl font-bold">{title}</h3><p className="mt-2 text-sm leading-6 text-white/55">{detail}</p></div></div>)}
+          </div>
+        </div>
+      </section>
+
+      <section className="mx-auto max-w-7xl px-4 py-24 sm:px-6 lg:px-8" data-reveal>
+        <div className="relative isolate overflow-hidden rounded-[2rem] px-6 py-20 text-center text-white shadow-2xl sm:px-12">
+          <img src="/service-images/emergency-tree-removal-v2.png" alt="Professional emergency tree service crew at work" loading="lazy" className="absolute inset-0 -z-20 h-full w-full object-cover" />
+          <div className="absolute inset-0 -z-10 bg-foreground/85" />
+          <Sparkles className="mx-auto h-8 w-8 text-accent" /><h2 className="mx-auto mt-5 max-w-3xl font-heading text-4xl font-black leading-tight sm:text-5xl">A small concern should not become an expensive emergency.</h2><p className="mx-auto mt-5 max-w-xl text-sm leading-7 text-white/65">Get a professional assessment and a clear written plan for your property.</p><div className="mt-9 flex flex-col items-center justify-center gap-3 sm:flex-row"><Link to="/contact" className="inline-flex items-center gap-2 rounded-xl bg-accent px-7 py-3.5 text-sm font-black text-foreground shadow-lg">Schedule free inspection <ArrowRight className="h-4 w-4" /></Link><a href="tel:+17165892600" className="inline-flex items-center gap-2 rounded-xl border border-white/25 bg-white/5 px-7 py-3.5 text-sm font-bold text-white backdrop-blur"><PhoneCall className="h-4 w-4 text-accent" /> +1 716-589-2600</a></div>
+        </div>
       </section>
     </main>
   );
