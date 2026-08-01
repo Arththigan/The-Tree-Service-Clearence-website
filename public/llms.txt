@@ -1,0 +1,29 @@
+# Tree Services Clarence
+
+> Professional residential and commercial tree care based at 9950 County Rd, Clarence Center, New York.
+
+Tree Services Clarence provides emergency tree removal, precision tree trimming and pruning, stump grinding, land clearing, and utility line clearance. Call [+1 716-589-2600](tel:+17165892600) for service or request a free inspection through the website.
+
+## Primary pages
+
+- [Home](https://the-tree-service-clearence.web.app/): Company overview, field operations, and contact options.
+- [Services](https://the-tree-service-clearence.web.app/services): Complete list of professional tree-care services.
+- [Features](https://the-tree-service-clearence.web.app/features): Equipment, qualifications, and service capabilities.
+- [About](https://the-tree-service-clearence.web.app/about): Information about the company and its approach.
+- [Contact](https://the-tree-service-clearence.web.app/contact): Request an inspection or contact the team.
+
+## Service pages
+
+- [Emergency Tree Services](https://the-tree-service-clearence.web.app/services/emergency-tree-services)
+- [Tree Trimming and Pruning](https://the-tree-service-clearence.web.app/services/tree-trimming)
+- [Tree Removal](https://the-tree-service-clearence.web.app/services/tree-removal)
+- [Stump Grinding](https://the-tree-service-clearence.web.app/services/stump-grinding)
+- [Land Clearing](https://the-tree-service-clearence.web.app/services/land-clearing)
+- [Utility Line Clearance](https://the-tree-service-clearence.web.app/services/utility-line-clearance)
+
+## Policies and discovery
+
+- [Privacy Policy](https://the-tree-service-clearence.web.app/privacy-policy)
+- [Terms and Conditions](https://the-tree-service-clearence.web.app/terms-conditions)
+- [XML Sitemap](https://the-tree-service-clearence.web.app/sitemap.xml)
+- [Robots Instructions](https://the-tree-service-clearence.web.app/robots.txt)
