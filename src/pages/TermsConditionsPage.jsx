@@ -10,7 +10,7 @@ const sections = [
   { heading: 'Safety and Site Conditions', paragraphs: ['Tree work is inherently hazardous. Customers and other occupants must remain outside marked work zones and follow crew instructions. We may pause or decline work when conditions are unsafe or the requested work conflicts with professional standards.'] },
   { heading: 'Website Use', paragraphs: ['Website content is provided for general information and does not replace an on-site arborist assessment. You may not misuse the website, attempt unauthorized access, interfere with operation, or reproduce protected content without permission.'] },
   { heading: 'Limitation and Governing Terms', paragraphs: ['To the maximum extent permitted by law, website use is at your own risk. Service-specific warranties, liability limits, dispute procedures, and governing law may be further defined in the signed service agreement, which controls if it conflicts with these website terms.'] },
-  { heading: 'Contact', paragraphs: ['Questions about these terms may be sent to service@pulsecx.com or discussed by calling (800) 555-TREE.'] },
+  { heading: 'Contact', paragraphs: ['Questions about these terms may be sent to service@pulsecx.com or discussed by calling +1 716-589-2600.'] },
 ];
 
 export default function TermsConditionsPage() {
