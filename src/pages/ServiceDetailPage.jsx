@@ -56,10 +56,10 @@ export default function ServiceDetailPage({ slug }) {
               Book This Service <ArrowRight className="h-4 w-4" />
             </Link>
             <a
-              href="tel:8005558733"
+              href="tel:+17165892600"
               className="inline-flex h-12 items-center justify-center gap-2 rounded-xl border border-white/30 px-7 text-sm font-bold text-white transition hover:bg-white/10"
             >
-              <PhoneCall className="h-4 w-4" /> (800) 555-TREE
+              <PhoneCall className="h-4 w-4" /> +1 716-589-2600
             </a>
           </div>
         </div>
@@ -168,10 +168,10 @@ export default function ServiceDetailPage({ slug }) {
               Book Free Inspection <ArrowRight className="h-4 w-4" />
             </Link>
             <a
-              href="tel:8005558733"
+              href="tel:+17165892600"
               className="inline-flex items-center gap-2 rounded-xl border border-white/30 px-7 py-3.5 text-sm font-bold text-white"
             >
-              <PhoneCall className="h-4 w-4" /> (800) 555-TREE
+              <PhoneCall className="h-4 w-4" /> +1 716-589-2600
             </a>
           </div>
         </div>

@@ -3,9 +3,9 @@ import { Award, Mail, MapPin, PhoneCall } from 'lucide-react';
 import PageIntro from '../components/PageIntro';
 
 const details = [
-  [PhoneCall, '24/7 Phone', '(800) 555-TREE'],
+  [PhoneCall, '24/7 Phone', '+1 716-589-2600'],
   [Mail, 'Email', 'service@pulsecx.com'],
-  [MapPin, 'Service Area', 'Residential & Commercial'],
+  [MapPin, 'Street Address', '9950 County Rd, Clarence Center, New York'],
   [Award, 'Credentials', 'ISA Certified & Insured'],
 ];
 
