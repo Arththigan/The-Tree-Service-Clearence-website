@@ -1,14 +1,15 @@
-import React, { useEffect, useState } from 'react';
+import React, { lazy, Suspense, useEffect, useState } from 'react';
 import Navbar from './components/Navbar';
 import Footer from './components/Footer';
-import ContactPage from './pages/ContactPage';
-import FeaturesPage from './pages/FeaturesPage';
 import HomePage from './pages/HomePage';
-import AboutPage from './pages/AboutPage';
-import ServicesPage from './pages/ServicesPage';
-import ServiceDetailPage from './pages/ServiceDetailPage';
-import PrivacyPolicyPage from './pages/PrivacyPolicyPage';
-import TermsConditionsPage from './pages/TermsConditionsPage';
+
+const ContactPage = lazy(() => import('./pages/ContactPage'));
+const FeaturesPage = lazy(() => import('./pages/FeaturesPage'));
+const AboutPage = lazy(() => import('./pages/AboutPage'));
+const ServicesPage = lazy(() => import('./pages/ServicesPage'));
+const ServiceDetailPage = lazy(() => import('./pages/ServiceDetailPage'));
+const PrivacyPolicyPage = lazy(() => import('./pages/PrivacyPolicyPage'));
+const TermsConditionsPage = lazy(() => import('./pages/TermsConditionsPage'));
 
 const SERVICE_SLUGS = [
   'emergency-tree-services',
@@ -88,10 +89,12 @@ export default function App() {
   return (
     <div className="min-h-screen bg-background text-foreground">
       <Navbar />
-      {serviceSlug && SERVICE_SLUGS.includes(serviceSlug)
-        ? <ServiceDetailPage slug={serviceSlug} />
-        : <Page />
-      }
+      <Suspense fallback={<main className="min-h-[70vh] bg-background" aria-busy="true" aria-label="Loading page" />}>
+        {serviceSlug && SERVICE_SLUGS.includes(serviceSlug)
+          ? <ServiceDetailPage slug={serviceSlug} />
+          : <Page />
+        }
+      </Suspense>
       <Footer />
     </div>
   );
