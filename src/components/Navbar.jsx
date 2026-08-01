@@ -55,8 +55,10 @@ export default function Navbar() {
         {/* Logo */}
         <Link to="/" className="flex shrink-0 rounded-lg bg-white px-2 py-0.5" aria-label="Tree Services Clarence home">
           <img
-            src="/brand/tree-services-clarence-logo.webp"
+            src="/brand/tree-services-clarence-logo-480.webp"
             alt="Tree Services Clarence"
+            width="480"
+            height="165"
             className="h-10 w-auto max-w-[132px] object-contain sm:max-w-[150px]"
           />
         </Link>

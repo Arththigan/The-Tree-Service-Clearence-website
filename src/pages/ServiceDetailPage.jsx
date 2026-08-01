@@ -26,7 +26,7 @@ export default function ServiceDetailPage({ slug }) {
       {/* Hero */}
       <section className="relative isolate border-b border-border/60 bg-foreground text-background">
         <div className="absolute inset-0 -z-10">
-          <img src={service.image} alt={service.imageAlt} className="h-full w-full object-cover opacity-30" />
+          <img src={service.image} alt={service.imageAlt} width="960" height="640" className="h-full w-full object-cover opacity-30" />
           <div className="absolute inset-0 bg-gradient-to-r from-foreground/95 via-foreground/70 to-transparent" />
         </div>
         <div className="mx-auto max-w-7xl px-4 py-20 sm:px-6 lg:px-8 lg:py-28">
@@ -87,7 +87,7 @@ export default function ServiceDetailPage({ slug }) {
           <h2 className="mt-3 font-heading text-2xl font-black tracking-tight sm:text-3xl">The right call for your property</h2>
           <p className="mt-5 text-sm leading-7 text-muted-foreground">{service.why}</p>
           <div className="mt-8 overflow-hidden rounded-2xl border border-border shadow-md">
-            <img src={service.image} alt={service.imageAlt} loading="lazy" className="h-56 w-full object-cover" />
+            <img src={service.image} alt={service.imageAlt} width="960" height="640" loading="lazy" decoding="async" className="h-56 w-full object-cover" />
           </div>
         </div>
       </section>

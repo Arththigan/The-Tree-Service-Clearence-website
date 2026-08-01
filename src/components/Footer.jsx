@@ -11,7 +11,7 @@ export default function Footer() {
       <div className="mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8">
         <div className="grid gap-12 sm:grid-cols-2 lg:grid-cols-12">
           <div className="lg:col-span-4">
-            <Link to="/" className="inline-flex rounded-xl bg-white p-3 shadow-lg" aria-label="Tree Services Clarence home"><img src="/brand/tree-services-clarence-logo.webp" alt="Tree Services Clarence" className="h-auto w-60 object-contain" /></Link>
+            <Link to="/" className="inline-flex rounded-xl bg-white p-3 shadow-lg" aria-label="Tree Services Clarence home"><img src="/brand/tree-services-clarence-logo-480.webp" alt="Tree Services Clarence" width="480" height="165" loading="lazy" decoding="async" className="h-auto w-60 object-contain" /></Link>
             <p className="mt-5 max-w-sm text-sm leading-6 text-background/60">Certified arborist care, emergency tree removal, precision pruning, and complete property clearance for residential and commercial clients.</p>
             <div className="mt-5 inline-flex items-center gap-2 rounded-full border border-white/10 px-3 py-2 text-xs font-semibold text-background/70"><ShieldCheck className="h-4 w-4 text-accent" /> ISA Certified & Fully Insured</div>
           </div>

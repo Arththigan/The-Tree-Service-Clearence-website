@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://the-tree-service-clearence.web.app/sitemap.xml
