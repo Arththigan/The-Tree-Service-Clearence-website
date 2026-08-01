@@ -47,8 +47,8 @@ export default {
         sm: 'calc(var(--radius) - 4px)',
       },
       fontFamily: {
-        heading: ['Figtree', 'Inter', 'system-ui', 'sans-serif'],
-        body: ['Figtree', 'Inter', 'system-ui', 'sans-serif'],
+        heading: ['system-ui', '-apple-system', 'BlinkMacSystemFont', 'Segoe UI', 'sans-serif'],
+        body: ['system-ui', '-apple-system', 'BlinkMacSystemFont', 'Segoe UI', 'sans-serif'],
       }
     },
   },
